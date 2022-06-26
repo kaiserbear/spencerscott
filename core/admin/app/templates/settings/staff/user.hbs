@@ -232,7 +232,7 @@
                         </GhFormGroup>
 
                         <GhFormGroup @errors={{this.user.errors}} @hasValidated={{this.user.hasValidated}} @property="website">
-                            <label for="user-website">Website</label>
+                            <label for="user-website">Linked In</label>
                             <GhTextInput
                                 @type="url"
                                 @id="user-website"
@@ -244,26 +244,10 @@
                                 @focus-out={{action "validate" "website" target=this.user}}
                                 data-test-website-input={{true}} />
                             <GhErrorMessage @errors={{this.user.errors}} @property="website" data-test-error="user-website" />
-                            <p>Have a website or blog other than this one? Link it!</p>
+                            <p>Paste your LinkedIn profile link here</p>
                         </GhFormGroup>
 
-                        <GhFormGroup @errors={{this.user.errors}} @hasValidated={{this.user.hasValidated}} @property="facebook">
-                            <label for="user-facebook">Facebook profile</label>
-                            <GhTextInput
-                                @type="url"
-                                @placeholder="https://www.facebook.com/username"
-                                @autocorrect="off"
-                                @id="user-facebook"
-                                @name="user[facebook]"
-                                @value={{readonly this.user.facebook}}
-                                @input={{action (mut this._scratchFacebook) value="target.value"}}
-                                @focus-out={{action "validateFacebookUrl"}}
-                                data-test-facebook-input={{true}}
-                            />
-                            <GhErrorMessage @errors={{this.user.errors}} @property="facebook" data-test-error="user-facebook" />
-                            <p>URL of your personal Facebook Profile</p>
-                        </GhFormGroup>
-
+                       
                         <GhFormGroup @errors={{this.user.errors}} @hasValidated={{this.user.hasValidated}} @property="twitter">
                             <label for="user-twitter">Twitter profile</label>
                             <GhTextInput

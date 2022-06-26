@@ -1,0 +1,40 @@
+{{!< default}}
+
+{{!-- The main content area on the About Us page --}}
+{{#post}}
+<div class="container-fluid wrapper">
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="page__header">
+        <h1 class="page__title">{{title}}</h1>
+      </div>
+    </div>
+    <div class="col-xs-12">
+      <article class="{{post_class}}">
+        <div class="post__content">
+          <h4>{{t "Drop us a line:"}}</h4>
+          <p>Get in contact with us here at Spencer Scott for all your enquires. Whether you're a candidate seeking a new role or you have requirements.</p>
+          <div  class="contact-address">
+            <ul>
+              <li><h4>17a Bell Street,</h4></li>
+              <li><h4>Reigate,</h4></li>
+              <li><h4>England</h4></li>
+              <li><h4>RH2 7AD</h4></li>
+            </ul>
+            <h2>0203 865 8986</h2>
+          </div>
+          <div class="contact-form m-b-lg">
+            <form action="https://formspree.io/f/meqnwzld" id="contact-form" class="contact-form clearfix" method="post">
+              <input type="text" name="username" id="username" title="{{t "Name"}}" placeholder="{{t "Name"}}" required>
+              <input type="text" name="email" id="email" title="{{t "Email"}}" class="email" placeholder="{{t "Email"}}" required>
+              <textarea rows="5" name="message" id="message" title="{{t "Message"}}" placeholder="{{t "Message"}}" required></textarea>
+              <input type="text" name="_gotcha" style="display:none">
+              <input class="btn btn--brand" type="submit" name="submit" title="{{t "Send"}}" id="submit" value="{{t "Send"}}">
+            </form>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</div>
+{{/post}}

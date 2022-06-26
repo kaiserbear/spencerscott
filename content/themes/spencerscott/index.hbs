@@ -1,0 +1,56 @@
+{{!< default}}
+
+<div class="container-fluid wrapper">
+  {{!-- Top post latest/featured --}}
+  <section class="section latest-post">
+    {{#if @custom.homepage_featured_on_top}}
+      {{#get "posts" include="authors,tags" filter="featured:true" limit="1"}}
+        {{#foreach posts to="1"}}
+          <div class="row">
+            <div class="col-xs {{#unless feature_image}}m-t-lg m-b-lg{{/unless}}">
+              {{> post-card class="post-card--special" lazy=false }}
+            </div>
+          </div>
+        {{/foreach}}
+      {{/get}}
+    {{else}}
+      {{#foreach posts to="1"}}
+        <div class="row">
+          <div class="col-xs {{#unless feature_image}}m-t-lg m-b-lg{{/unless}}">
+            {{> post-card class="post-card--special" lazy=false }}
+          </div>
+        </div>
+      {{/foreach}}
+    {{/if}}
+  </section>
+
+  {{!-- Post feed layout --}}
+  {{#match @custom.homepage_layout "posts-grid-with-sidebar"}}
+    {{> home-posts-grid-sidebar}}
+  {{/match}}
+
+  {{#match @custom.homepage_layout "posts-list-with-sidebar"}}
+    {{> home-posts-list-sidebar}}
+  {{/match}}
+
+  {{#match @custom.homepage_layout "posts-grid"}}
+    {{> home-posts-grid}}
+  {{/match}}
+
+  {{!-- Explore topics --}}
+  {{!-- {{#if @custom.homepage_topics}}
+    <h5 class="section__title">{{t "Explore topics"}}</h5>
+    {{> wave}}
+    <section class="section top-tags">
+      {{#get "tags" limit="4" include="count.posts" order="count.posts desc"}}
+        <div class="row">
+        {{#foreach tags}}
+          <div class="col-xs-12 col-sm-6 col-lg-3">
+            {{> tag-card}}
+          </div>
+        {{/foreach}}
+        </div>
+      {{/get}}
+    </section>
+  {{/if}} --}}
+</div>

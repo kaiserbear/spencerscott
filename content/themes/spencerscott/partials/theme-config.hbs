@@ -1,0 +1,56 @@
+<script>
+  // ===============
+  // Basic Config
+  // ===============
+  let config = {
+    ghost_url: `{{#if @custom.search_url}}{{@custom.search_url}}{{/if}}`,  
+    ghost_key: `{{#if @custom.search_key}}{{@custom.search_key}}{{/if}}`,
+    ghost_version: 'v5.0',
+    enable_search_in_content: !!`{{#if @custom.search_in_content}}{{@custom.search_in_content}}{{/if}}`,
+    color_scheme_default: `{{#if @custom.default_color_scheme}}{{@custom.default_color_scheme}}{{else}}system{{/if}}`,
+    enable_progress_bar: !!`{{#if @custom.enable_progress_bar}}{{@custom.enable_progress_bar}}{{/if}}`,
+    enable_image_lightbox: !!`{{#if @custom.enable_image_lightbox}}{{@custom.enable_image_lightbox}}{{/if}}`,
+    enable_scroll_top: !!`{{#if @custom.enable_scroll_to_top}}{{@custom.enable_scroll_to_top}}{{/if}}`,
+    open_links_in_new_tab: !!`{{#if @custom.open_external_links_in_new_tab}}{{@custom.open_external_links_in_new_tab}}{{/if}}`,
+    enable_hyphens: false, /* Enable hyphens */
+    enable_pwa: false, /* Enable PWA - Progressive Web App */
+    disqus_shortname: 'biron-demo', /* Replace 'biron-demo' with your disqus account shortname */
+  }
+
+  // =========================
+  // Dark/Light Theme Handling
+  // =========================
+  let preferredTheme; 
+  if (config.color_scheme_default.toLowerCase() === 'system') {
+    const preferredColorScheme = (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light';
+    preferredTheme = localStorage.getItem('USER_COLOR_SCHEME') || preferredColorScheme;
+  } else {
+    preferredTheme = localStorage.getItem('USER_COLOR_SCHEME') || config.color_scheme_default.toLowerCase();
+  }
+  document.documentElement.setAttribute("data-color-scheme", preferredTheme);
+
+  // =========================
+  // Set Hyphens property
+  // =========================
+  const root = document.documentElement;
+  if (config.enable_hyphens) {
+    root.style.setProperty('--global-hyphens', 'auto')
+  }
+  
+  // ===============================
+  // Global values used in the theme
+  // ===============================
+  const global = {
+    pagination_current_page: parseInt(`{{pagination.page}}`),
+    pagination_next_page: parseInt(`{{pagination.next}}`),
+    pagination_next_page_link: '',
+    pagination_max_pages: parseInt('{{pagination.pages}}'), 
+    pagination_posts_per_page: parseInt('{{@config.posts_per_page}}'),
+  }
+</script>
+
+<style> 
+body { 
+  {{#if @custom.secondary_color}} --color-secondary: {{@custom.secondary_color}}; {{/if}} 
+} 
+</style>

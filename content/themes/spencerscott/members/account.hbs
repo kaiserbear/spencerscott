@@ -1,0 +1,81 @@
+{{!< ../default}}
+
+<div class="container-fluid wrapper">
+  <div class="account">
+    {{#if @member.paid}}
+
+      {{!-- Logged in, paying member: Show account info --}}
+      <div class="account-box">
+        <h1 class="account-box__title">{{t "Your account"}}</h1>
+        <p>{{t "Currently, you have an active account to all areas. You're all set, but if you need any help, get in touch with us and we'd be happy to help."}}</p>
+        {{#foreach @member.subscriptions}}
+          <div class="account-detail">
+            <div class="account-detail__label">
+              <div class="account-detail__name">{{t "Name"}}</div>
+              <div class="account-detail__email">{{t "Email"}}</div>
+              <div class="account-detail__plan">{{t "Your plan"}}</div>
+              <div class="account-detail__status">{{t "Status"}}</div>
+              <div class="account-detail__valid">{{t "Valid until"}}</div>
+            </div>
+            <div class="account-detail__value">
+              <div class="account-detail__name">{{@member.name}}</div>
+              <div class="account-detail__email">{{@member.email}}</div>
+              <div class="account-detail__plan">{{price plan}} {{plan.nickname}}</div>
+              <div class="account-detail__status">{{status}}</div>
+              <div class="account-detail__valid">{{date current_period_end format="MMMM DD, YYYY"}}</div> 
+            </div>
+          </div>
+
+          <div class="account__edit m-t-lg">
+            <a class="btn btn--brand btn--bordered btn--xs" href="javascript:"
+                data-members-edit-billing
+                data-members-success="/"
+                data-members-cancel="/"
+              >Edit billing info</a>
+
+            {{cancel_link
+              class="btn btn--xs btn--bordered m-l"
+            }}
+          </div>
+        {{/foreach}}
+      </div>
+
+      {{#get "posts" limit="all" include="authors,tags" }}
+      <h5 class="member-posts__title">{{t "Members only content"}}</h5>
+      {{> wave}}
+      <div class="row">
+        {{#foreach posts visibility="paid"}}
+          <div class="col-xs-12 col-md-6 col-lg-4 post-wrap">
+            {{> post-card class="col"}}
+          </div>
+        {{/foreach}}
+      </div>
+      {{/get}}
+
+    {{else if @member}}
+
+      {{!-- Logged in, not paying: Link to checkout --}}
+      <div class="account-box">
+        <h1 class="account-box__title">{{t "Your account"}}</h1>
+        <p>{{t "Currently, you are subscribed to free updates. Unlock full access to see the entire library of members-only content & updates by subscribing to a paid plan."}}
+        </p>
+        <div class="account-detail">
+          <div class="account-detail__label">
+            <div class="account-detail__email">{{t "Email"}}</div>
+            <div class="account-detail__plan">{{t "Your plan"}}</div>
+          </div>
+          <div class="account-detail__value">
+            <div class="account-detail__email">{{@member.email}}</div>
+            <div class="account-detail__plan">{{t "Free"}}</div>
+          </div>
+        </div>
+      </div>
+
+    {{else}}
+
+      {{!-- Not logged in: Redirect to signin --}}
+      <script>window.location = '{{@site.url}}/signin/';</script>
+
+    {{/if}}
+  </div>
+</div>
