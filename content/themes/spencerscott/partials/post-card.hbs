@@ -19,10 +19,10 @@
   <div class="post-card__content">
     <div class="post-card__header">
       {{#if tags}}
-        {{#primary_tag}}
+        {{#foreach tags}}
           <a class="tag-{{slug}} post-card__tag" href="{{url}}" 
           title="{{name}}" aria-label="{{name}}s">{{name}}</a>
-        {{/primary_tag}}
+        {{/foreach}}
       {{/if}}
       <div class="post-card__tag {{visibility}}">members</div>
 
