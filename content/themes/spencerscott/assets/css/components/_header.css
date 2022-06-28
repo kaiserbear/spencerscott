@@ -1,5 +1,9 @@
 /* Header */
 
+[data-color-scheme="dark"] .header__logo {
+    filter: invert(1);
+}
+
 .header {
     /* position: fixed; */
     position: sticky;
@@ -261,6 +265,7 @@
             transition: box-shadow var(--animation-duration) var(--animation-name);
             color: var(--color-text-accent-2);
             white-space: pre;
+            margin-right: 1rem;
         }
         li {
             display: block;

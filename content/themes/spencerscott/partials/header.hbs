@@ -15,16 +15,7 @@
             </div>
           {{/if}}
           
-          <div class="header__theme">
-            <a class="header__theme--toggle" id="theme-dark" tabindex="0" 
-              title="{{t "Dark Theme"}}" aria-label="{{t "Dark Theme"}}">
-              {{>icon name="moon" size="sm"}}
-            </a>
-            <a class="header__theme--toggle" id="theme-light" tabindex="0" 
-              title="{{t "Light Theme"}}" aria-label="{{t "Light Theme"}}">
-              {{>icon name="sun" size="sm"}}
-            </a>
-          </div>
+          
         </div>
 
         <div class="col-xs-6 col-md-4 center-xs">
@@ -43,9 +34,9 @@
         <div class="col-xs-3 col-md-4 end-xs middle-xs is-flex">
           {{!-- Member Links --}}
           <div class="header__member">
-            <a class="header__member--open" tabindex="0" aria-label="{{t "Subscribe/Log in"}}">
+            {{!-- <a class="header__member--open" tabindex="0" aria-label="{{t "Subscribe/Log in"}}">
               {{>icon name="user" size="sm"}}
-            </a>
+            </a> --}}
 
             {{!-- <div class="header__member-options">
               {{#if @member}}
@@ -56,6 +47,16 @@
                 <a class="signup-link header-cta" href="/signup/">{{t "Subscribe"}}</a>
               {{/if}}
             </div> --}}
+          </div>
+          <div class="header__theme">
+            <a class="header__theme--toggle" id="theme-dark" tabindex="0" 
+              title="{{t "Dark Theme"}}" aria-label="{{t "Dark Theme"}}">
+              {{>icon name="moon" size="sm"}}
+            </a>
+            <a class="header__theme--toggle" id="theme-light" tabindex="0" 
+              title="{{t "Light Theme"}}" aria-label="{{t "Light Theme"}}">
+              {{>icon name="sun" size="sm"}}
+            </a>
           </div>
 
           {{!-- Menu Button --}}
